@@ -16,6 +16,7 @@
 1. [Задание на логи и трафик](https://github.com/piligrim-a3/stp-map-task)
 2. [Задание про космические спутники и обои](https://github.com/piligrim-a3/spt-himawari8)
 3. [Задание на кампус и QR](https://github.com/piligrim-a3/stp-campus-qr)
-4. ...
+4. [Задание про отчетность и рутину](https://github.com/piligrim-a3/stp-doc-xlsx)
+5. ...
 
 Список заданий не завершен и будет дополняться, а условия выставления оценки будут объявлены чуть позже.
