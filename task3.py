@@ -102,8 +102,7 @@ def show_qr_code():
     )
     global count
     count = (count + 1) % 30
-
-    qr.add_data(getQR()[count])
+    qr.add_data(getQR()[count].get('qr'))
     qr.make(fit=True)
     img = qr.make_image(fill_color="black", back_color="white")
     img.save("qrCode.png")
