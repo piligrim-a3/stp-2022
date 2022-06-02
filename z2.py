@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 from win32api import GetSystemMetrics
 import fake_useragent
 from PIL import Image
+import PIL.ImageOps
 
 
 Width = GetSystemMetrics(0)
@@ -28,6 +29,13 @@ img_data = requests.get(linkIm).content
 with open('cloud.png', 'wb') as handler:
     handler.write(img_data)
 
+img_earth = Image.open('earth.png').convert('RGBA')
+img_cloud = Image.open('cloud.png').convert('RGBA')
+width, height = img_earth.size
+img_cloud = img_cloud.resize((width, height))
+img_cloud.save('cloud.png')
+img_earth.paste(img_cloud, (0, 0), img_cloud)
+img_earth.save('result.png', quality=100)
 
 
 # im = Image.open(name_open)
