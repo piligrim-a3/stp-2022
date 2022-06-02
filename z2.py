@@ -1,11 +1,10 @@
 import json
 import requests
-from bs4 import BeautifulSoup
 from win32api import GetSystemMetrics
 import fake_useragent
 from PIL import Image
-import PIL.ImageOps
-
+import ctypes
+import os
 
 Width = GetSystemMetrics(0)
 Height = GetSystemMetrics(1)
@@ -16,10 +15,8 @@ linkDate = "https://ncthmwrwbtst.cr.chiba-u.ac.jp/img/FULL_24h/latest.json?_=165
 datetime = requests.post(linkDate, headers=header).text
 date = json.loads(datetime)['date'].split()[0].split('-')
 time = json.loads(datetime)['date'].split()[1].split(':')
-print(date)
-print(time)
 
-linkIm = "https://anzu.sinc.ad.jp/himawari/img/FULL_24h/BlueMarble/1d/385/BlueMarble_0_0.png"
+linkIm = "https://anzu.sinc.ad.jp/himawari/img/FULL_24h/BlueMarble/1d/770/BlueMarble_0_0.png"
 img_data = requests.get(linkIm).content
 with open('earth.png', 'wb') as handler:
     handler.write(img_data)
@@ -30,17 +27,12 @@ with open('cloud.png', 'wb') as handler:
     handler.write(img_data)
 
 img_earth = Image.open('earth.png').convert('RGBA')
-img_cloud = Image.open('cloud.png').convert('RGBA')
-width, height = img_earth.size
-img_cloud = img_cloud.resize((width, height))
+widthE, heightE = img_earth.size
+img_cloud = Image.open('cloud.png').convert('RGBA').resize((widthE, heightE))
 img_cloud.save('cloud.png')
 img_earth.paste(img_cloud, (0, 0), img_cloud)
+
+x, y = img_earth.size
+img_earth = img_earth.resize((int(x * (Height / y)), Height))
 img_earth.save('result.png', quality=100)
-
-
-# im = Image.open(name_open)
-# result = Image.new('RGB', im.size)
-# x, y = im.size
-# r, g, b = im.getpixel((i, j))
-# result.putpixel((i, j), (nr, ng, nb))
-# new_im = result.transpose(Image.FLIP_LEFT_RIGHT)
+ctypes.windll.user32.SystemParametersInfoW(20, 0, os.path.abspath('result.png'), 0)
