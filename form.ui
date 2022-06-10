@@ -6,17 +6,23 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>370</height>
+    <width>507</width>
+    <height>396</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Кампус</string>
+  </property>
+  <property name="windowIcon">
+   <iconset theme="C:\Users\olegm\Documents\GitHub\stp-2022\stp-2022\icon.ico"/>
+  </property>
+  <property name="autoFillBackground">
+   <bool>true</bool>
   </property>
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
-     <x>170</x>
+     <x>190</x>
      <y>10</y>
      <width>75</width>
      <height>23</height>
@@ -68,7 +74,7 @@
   <widget class="QPushButton" name="pushButton_3">
    <property name="geometry">
     <rect>
-     <x>320</x>
+     <x>430</x>
      <y>340</y>
      <width>75</width>
      <height>23</height>
@@ -81,7 +87,7 @@
   <widget class="QLineEdit" name="lineEdit">
    <property name="geometry">
     <rect>
-     <x>50</x>
+     <x>70</x>
      <y>0</y>
      <width>113</width>
      <height>20</height>
@@ -91,7 +97,7 @@
   <widget class="QLineEdit" name="lineEdit_2">
    <property name="geometry">
     <rect>
-     <x>50</x>
+     <x>70</x>
      <y>20</y>
      <width>113</width>
      <height>20</height>
@@ -101,8 +107,8 @@
   <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>9</y>
+     <x>100</x>
+     <y>10</y>
      <width>320</width>
      <height>321</height>
     </rect>
@@ -114,6 +120,48 @@
     <bool>true</bool>
    </property>
   </widget>
+  <widget class="QPushButton" name="pushButton_4">
+   <property name="geometry">
+    <rect>
+     <x>80</x>
+     <y>340</y>
+     <width>91</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>8</pointsize>
+    </font>
+   </property>
+   <property name="layoutDirection">
+    <enum>Qt::LeftToRight</enum>
+   </property>
+   <property name="text">
+    <string>Counter-index</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_4">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>360</y>
+     <width>511</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>7</pointsize>
+    </font>
+   </property>
+   <property name="layoutDirection">
+    <enum>Qt::LeftToRight</enum>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
   <zorder>label</zorder>
   <zorder>label_2</zorder>
   <zorder>pushButton_2</zorder>
@@ -122,6 +170,8 @@
   <zorder>lineEdit_2</zorder>
   <zorder>label_3</zorder>
   <zorder>pushButton</zorder>
+  <zorder>pushButton_4</zorder>
+  <zorder>label_4</zorder>
  </widget>
  <resources/>
  <connections/>
