@@ -1,0 +1,127 @@
+Index: z3.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import sys\r\nimport json\r\nimport requests\r\nimport fake_useragent\r\nimport qrcode\r\nfrom PyQt6 import uic, QtWidgets\r\nfrom form import Ui_Dialog\r\nfrom PyQt6.QtGui import QPixmap\r\nfrom PyQt6.QtWidgets import QLabel, QFileDialog\r\nfrom PyQt6 import QtGui\r\nimport os\r\n\r\n\r\n#lgn: 1558\r\n#pwd: n6hgur\r\nsession = requests.Session()\r\nuser = fake_useragent.UserAgent().random\r\nheader = {'user-agent': user}\r\nForm, Window = uic.loadUiType(\"form.ui\")\r\nvalid_id = 0\r\n\r\n\r\ndef login(lgn, pwd):\r\n        link = \"https://bgpu.ru/campus/api/v1/auth\"\r\n        data = {'login': lgn,\r\n                'pwd': pwd}\r\n        return session.post(link, data=data, headers=header)\r\n\r\n\r\ndef new_qr():\r\n        link = \"https://lk.bgpu.ru/campus/api/v1/area/qr?index=\" + str(valid_id + 1)\r\n        indexes = session.get(link, headers=header).text\r\n        return json.loads(indexes)\r\n\r\n\r\ndef counter_index():\r\n        actual_code_link = \"https://lk.bgpu.ru/campus/api/v1/area/counter-index\"\r\n        code = session.get(actual_code_link, headers=header).text\r\n        return json.loads(code)\r\n\r\n\r\ndef create_qr(jqr):\r\n        global valid_id\r\n        img = qrcode.make(jqr[0]['qr'])\r\n        img.save(\"qr.png\")\r\n        # print(*jqr, sep='\\n')\r\n        valid_id = jqr[0]['countIndex']\r\n        return \"qr.png\"\r\n\r\n\r\nclass Ui(QtWidgets.QDialog, Form):\r\n        def __init__(self):\r\n                super(Ui, self).__init__()\r\n                self.ui = Ui_Dialog()\r\n                self.ui.setupUi(self)\r\n                self.initUI()\r\n\r\n        def buttonPresed(self):\r\n                lgn = self.ui.lineEdit.text()\r\n                pwd = self.ui.lineEdit_2.text()\r\n                p = login(lgn, pwd)\r\n                if '<Response [200]>' == str(p):\r\n                        self.ui.lineEdit.setText('')\r\n                        self.ui.lineEdit_2.setText('')\r\n                        url = os.path.abspath(create_qr(new_qr()))\r\n                        img = QPixmap(url)\r\n                        self.ui.label_3.setPixmap(img)\r\n                        self.visible_ui()\r\n\r\n        def buttonPresed_3(self):\r\n                url = os.path.abspath(create_qr(new_qr()))\r\n                img = QPixmap(url)\r\n                self.ui.label_3.setPixmap(img)\r\n\r\n        def buttonPresed_4(self):\r\n                p = counter_index()\r\n                self.ui.label_4.setText(str(p))\r\n\r\n        def buttonPresed_2(self):\r\n                self.visible_ui()\r\n\r\n        def initUI(self):\r\n                self.ui.pushButton.clicked.connect(self.buttonPresed)\r\n                self.ui.pushButton_2.clicked.connect(self.buttonPresed_2)\r\n                self.ui.pushButton_3.clicked.connect(self.buttonPresed_3)\r\n                self.ui.pushButton_4.clicked.connect(self.buttonPresed_4)\r\n                self.ui.lineEdit.setText('1558')\r\n                self.ui.lineEdit_2.setText('n6hgur')\r\n                lgn = self.ui.lineEdit.text()\r\n                pwd = self.ui.lineEdit_2.text()\r\n                login(lgn, pwd)\r\n                self.ui.label_3.setVisible(self.ui.label_3.isVisible())\r\n                self.ui.pushButton_2.setVisible(self.ui.pushButton_2.isVisible())\r\n                self.ui.label_4.setVisible(self.ui.label_4.isVisible())\r\n                self.ui.pushButton_4.setVisible(self.ui.pushButton_4.isVisible())\r\n\r\n        def visible_ui(self):\r\n                self.ui.lineEdit.setVisible(not self.ui.lineEdit.isVisible())\r\n                self.ui.lineEdit_2.setVisible(not self.ui.lineEdit_2.isVisible())\r\n                self.ui.pushButton.setVisible(not self.ui.pushButton.isVisible())\r\n                self.ui.label.setVisible(not self.ui.label.isVisible())\r\n                self.ui.label_2.setVisible(not self.ui.label_2.isVisible())\r\n                self.ui.label_3.setVisible(not self.ui.label_3.isVisible())\r\n                self.ui.pushButton_2.setVisible(not self.ui.pushButton_2.isVisible())\r\n                self.ui.label_4.setVisible(not self.ui.label_4.isVisible())\r\n                self.ui.pushButton_4.setVisible(not self.ui.pushButton_4.isVisible())\r\n\r\n\r\nif __name__ == \"__main__\":\r\n        import sys\r\n        app = QtWidgets.QApplication(sys.argv)\r\n        w = Ui()\r\n        w.show()\r\n        sys.exit(app.exec())
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/z3.py b/z3.py
+--- a/z3.py	(revision eab9b8639db06daceeeca706bf7ae19571256818)
++++ b/z3.py	(date 1654874740402)
+@@ -74,7 +74,7 @@
+ 
+         def buttonPresed_4(self):
+                 p = counter_index()
+-                self.ui.label_4.setText(str(p))
++                        self.ui.label_4.setText(str(p))
+ 
+         def buttonPresed_2(self):
+                 self.visible_ui()
+Index: .idea/.gitignore
+===================================================================
+diff --git a/.idea/.gitignore b/.idea/.gitignore
+deleted file mode 100644
+--- a/.idea/.gitignore	(revision eab9b8639db06daceeeca706bf7ae19571256818)
++++ /dev/null	(revision eab9b8639db06daceeeca706bf7ae19571256818)
+@@ -1,3 +0,0 @@
+-# Default ignored files
+-/shelf/
+-/workspace.xml
+Index: .idea/vcs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/vcs.xml b/.idea/vcs.xml
+deleted file mode 100644
+--- a/.idea/vcs.xml	(revision eab9b8639db06daceeeca706bf7ae19571256818)
++++ /dev/null	(revision eab9b8639db06daceeeca706bf7ae19571256818)
+@@ -1,6 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="VcsDirectoryMappings">
+-    <mapping directory="$PROJECT_DIR$" vcs="Git" />
+-  </component>
+-</project>
+\ No newline at end of file
+Index: .idea/modules.xml
+===================================================================
+diff --git a/.idea/modules.xml b/.idea/modules.xml
+deleted file mode 100644
+--- a/.idea/modules.xml	(revision eab9b8639db06daceeeca706bf7ae19571256818)
++++ /dev/null	(revision eab9b8639db06daceeeca706bf7ae19571256818)
+@@ -1,8 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="ProjectModuleManager">
+-    <modules>
+-      <module fileurl="file://$PROJECT_DIR$/.idea/stp-2022.iml" filepath="$PROJECT_DIR$/.idea/stp-2022.iml" />
+-    </modules>
+-  </component>
+-</project>
+\ No newline at end of file
+Index: .idea/inspectionProfiles/profiles_settings.xml
+===================================================================
+diff --git a/.idea/inspectionProfiles/profiles_settings.xml b/.idea/inspectionProfiles/profiles_settings.xml
+deleted file mode 100644
+--- a/.idea/inspectionProfiles/profiles_settings.xml	(revision eab9b8639db06daceeeca706bf7ae19571256818)
++++ /dev/null	(revision eab9b8639db06daceeeca706bf7ae19571256818)
+@@ -1,6 +0,0 @@
+-<component name="InspectionProjectProfileManager">
+-  <settings>
+-    <option name="USE_PROJECT_PROFILE" value="false" />
+-    <version value="1.0" />
+-  </settings>
+-</component>
+\ No newline at end of file
+Index: .idea/inspectionProfiles/Project_Default.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/inspectionProfiles/Project_Default.xml b/.idea/inspectionProfiles/Project_Default.xml
+deleted file mode 100644
+--- a/.idea/inspectionProfiles/Project_Default.xml	(revision eab9b8639db06daceeeca706bf7ae19571256818)
++++ /dev/null	(revision eab9b8639db06daceeeca706bf7ae19571256818)
+@@ -1,12 +0,0 @@
+-<component name="InspectionProjectProfileManager">
+-  <profile version="1.0">
+-    <option name="myName" value="Project Default" />
+-    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
+-      <option name="ignoredIdentifiers">
+-        <list>
+-          <option value="aiogram.types.inline_keyboard.InlineKeyboardButton.__await__" />
+-        </list>
+-      </option>
+-    </inspection_tool>
+-  </profile>
+-</component>
+\ No newline at end of file
+Index: .idea/stp-2022.iml
+===================================================================
+diff --git a/.idea/stp-2022.iml b/.idea/stp-2022.iml
+deleted file mode 100644
+--- a/.idea/stp-2022.iml	(revision eab9b8639db06daceeeca706bf7ae19571256818)
++++ /dev/null	(revision eab9b8639db06daceeeca706bf7ae19571256818)
+@@ -1,8 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<module type="PYTHON_MODULE" version="4">
+-  <component name="NewModuleRootManager">
+-    <content url="file://$MODULE_DIR$" />
+-    <orderEntry type="jdk" jdkName="Python 3.9 (z1)" jdkType="Python SDK" />
+-    <orderEntry type="sourceFolder" forTests="false" />
+-  </component>
+-</module>
+\ No newline at end of file
+Index: .idea/misc.xml
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+deleted file mode 100644
+--- a/.idea/misc.xml	(revision eab9b8639db06daceeeca706bf7ae19571256818)
++++ /dev/null	(revision eab9b8639db06daceeeca706bf7ae19571256818)
+@@ -1,4 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.9 (z1)" project-jdk-type="Python SDK" />
+-</project>
+\ No newline at end of file

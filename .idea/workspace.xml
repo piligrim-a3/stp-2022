@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="783c29b4-683e-4738-9805-2d737ef8ebad" name="Changes" comment="fixup! z3_release" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="PUSH_TAGS">
+      <GitPushTagMode>
+        <option name="argument" value="--tags" />
+        <option name="title" value="All" />
+      </GitPushTagMode>
+    </option>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="development" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="29vMDC0AukEiaA7Fd1reX7BhYbK" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="vcs.patch.path" value="$USER_HOME$/Desktop" />
+  </component>
+  <component name="Push.Settings">
+    <option name="SHOW_DETAILS_PANEL" value="false" />
+  </component>
+  <component name="RunManager">
+    <configuration name="z3" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="stp-2022" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/z3.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="783c29b4-683e-4738-9805-2d737ef8ebad" name="Changes" comment="" />
+      <created>1653988984210</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1653988984210</updated>
+    </task>
+    <task id="LOCAL-00001" summary="start">
+      <created>1653989130562</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1653989130562</updated>
+    </task>
+    <task id="LOCAL-00002" summary="read file">
+      <created>1653990882919</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1653990882919</updated>
+    </task>
+    <task id="LOCAL-00003" summary="read file">
+      <created>1653997261129</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1653997261129</updated>
+    </task>
+    <task id="LOCAL-00004" summary="release">
+      <created>1653997389575</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1653997389575</updated>
+    </task>
+    <task id="LOCAL-00005" summary="z2_requests">
+      <created>1654000676122</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1654000676122</updated>
+    </task>
+    <task id="LOCAL-00006" summary="save_image">
+      <created>1654003028703</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1654003028703</updated>
+    </task>
+    <task id="LOCAL-00007" summary="save_image_cloud">
+      <created>1654011445328</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1654011445328</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Combining images">
+      <created>1654144751630</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1654144751630</updated>
+    </task>
+    <task id="LOCAL-00009" summary="z2_release">
+      <created>1654148668612</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1654148668612</updated>
+    </task>
+    <task id="LOCAL-00010" summary="z3_authorization">
+      <created>1654159010794</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1654159010794</updated>
+    </task>
+    <task id="LOCAL-00011" summary="def">
+      <created>1654162734878</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1654162734878</updated>
+    </task>
+    <task id="LOCAL-00012" summary="GUI">
+      <created>1654181074180</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1654181074180</updated>
+    </task>
+    <task id="LOCAL-00013" summary="update">
+      <created>1654182303271</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1654182303271</updated>
+    </task>
+    <task id="LOCAL-00014" summary="load_qr">
+      <created>1654862453830</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1654862453830</updated>
+    </task>
+    <task id="LOCAL-00015" summary="update_qr &amp; refresh GUI">
+      <created>1654870227478</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1654870227478</updated>
+    </task>
+    <task id="LOCAL-00016" summary="z3_release">
+      <created>1654874184741</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1654874184741</updated>
+    </task>
+    <task id="LOCAL-00017" summary="z3_release">
+      <created>1654876230293</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1654876230293</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
+    <servers />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.log" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="start" />
+    <MESSAGE value="read file" />
+    <MESSAGE value="release" />
+    <MESSAGE value="z2_requests" />
+    <MESSAGE value="save_image" />
+    <MESSAGE value="save_image_cloud" />
+    <MESSAGE value="Combining images" />
+    <MESSAGE value="z2_release" />
+    <MESSAGE value="z3_authorization" />
+    <MESSAGE value="def" />
+    <MESSAGE value="GUI" />
+    <MESSAGE value="update" />
+    <MESSAGE value="load_qr" />
+    <MESSAGE value="update_qr &amp; refresh GUI" />
+    <MESSAGE value="z3_spasibo_git" />
+    <MESSAGE value="z3_release" />
+    <option name="LAST_COMMIT_MESSAGE" value="z3_release" />
+  </component>
+</project>
