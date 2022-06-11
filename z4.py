@@ -5,7 +5,7 @@ from openpyxl.styles import (
     Color, colors)
 
 ABC = "ABCDEFGHIJ"
-cells = ["I2", "I3", "I4", "A10", "A11", "A12", "A13",
+cells = ["I2", "I3", "A10", "A11", "A12", "A13",
          "E63", "E64", "E65", "E66", "H63", "H64", "H65",
          "H66", "A15", "B15", "C15", "D15", "E15", "F16",
          "E16", "G15", "H15", "I15", "J15"]
@@ -13,15 +13,14 @@ cells = ["I2", "I3", "I4", "A10", "A11", "A12", "A13",
 def data():
     ws['H1'].value = 'УТВЕРЖДАЮ:'
     ws['H2'].value = 'Директор'
-    ws['I3'].value = '(сокращенное наименование\nобразовательного учреждения)'
+    ws['I3'].value = '(сокращенное наименование образовательного учреждения)'
     ws['H4'].value = '_____________'
     ws['H5'].value = '(подпись)'
-    ws['I2'].value = '___________________________'
     ws['I4'].value = '___________________________'
     ws['I5'].value = '(расшифровка подписи)'
     ws['H7'].value = '14.05.2022'
     ws['H8'].value = 'М.П.'
-    ws['A12'].value = 'Отчёт о фактическом предоставленном бесплатном питании'
+    ws['A10'].value = 'Отчёт о фактическом предоставленном бесплатном питании'
     ws['A11'].value = 'за период с 01.05.2022 по 31.05.2022'
     ws['A13'].value = '(сокращенное наименование образовательного учреждения)'
     ws['A15'].value = '№ п/п'
@@ -31,10 +30,10 @@ def data():
     ws['E15'].value = 'Дни посещения'
     ws['E16'].value = 'плановые'
     ws['F16'].value = 'фактические'
-    ws['G15'].value = 'Остаток на\nначало месяца,\nруб.'
-    ws['H15'].value = 'Поступило в\nтекущем месяце\nна питание, руб.'
-    ws['I15'].value = 'Израсходовано в\nтекущем месяце\nна питание, руб.'
-    ws['J15'].value = 'Остаток на\nконец месяца,\nруб.'
+    ws['G15'].value = 'Остаток на начало месяца, руб.'
+    ws['H15'].value = 'Поступило в текущем месяце на питание, руб.'
+    ws['I15'].value = 'Израсходовано в текущем месяце на питание, руб.'
+    ws['J15'].value = 'Остаток на конец месяца, руб.'
     ws['D57'].value = 'Итого:'
     ws['B59'].value = 'Отчет составлен в двух экземплярах.'
     ws['B61'].value = 'Подписи сторон:'
@@ -50,7 +49,7 @@ def data():
     ws['H66'].value = '(Ф.И.О.)'
 
 
-def merge_cells():
+def sample():
     ws.merge_cells('A10:J10')
     ws.merge_cells('A11:J11')
     ws.merge_cells('A12:J12')
@@ -82,7 +81,15 @@ def merge_cells():
 
 
 def borders():
-    pass
+    borders = Side(border_style="thin", color="000000")
+    for A in ABC:
+        for i in range(15, 57):
+            ws[A + str(i)].border = Border(top=borders, bottom=borders, left=borders, right=borders)
+    for A in "DEFGHIJ":
+        for i in range(57, 58):
+            ws[A + str(i)].border = Border(top=borders, bottom=borders, left=borders, right=borders)
+    ws["I2"].border = Border(bottom=Side(border_style="hair", color="000000"))
+    ws["A12"].border = Border(bottom=Side(border_style="thin", color="000000"))
 
 
 def size():
@@ -97,8 +104,26 @@ def size():
     ws.row_dimensions[65].height = 24
 
 
-def align(c):
-    pass
+def align():
+    for A in ABC:
+        for i in range(1, 67):
+            ws[A + str(i)].font = ft
+            if A + str(i) in cells:
+                ws[A + str(i)].alignment = Alignment(wrap_text=True, horizontal="center", vertical="center")
+            else:
+                ws[A + str(i)].alignment = Alignment(wrap_text=True)
+
+
+def format():
+    ws['D57'].font = Font(name='Times new roman',
+          size=10,
+          bold=True,
+          italic=False,
+          vertAlign=None,
+          underline='none',
+          strike=False,
+          color='FF000000')
+    ws['D57'].alignment = Alignment(horizontal="right", vertical="center")
 
 
 wb = Workbook()
@@ -111,17 +136,10 @@ ft = Font(name='Times new roman',
           underline='none',
           strike=False,
           color='FF000000')
-font_size = 10
-cols_dict = {}
-for A in ABC:
-    for i in range(1, 67):
-        ws[A + str(i)].font = ft
-        if A + str(i) in cells:
-            ws[A + str(i)].alignment = Alignment(wrap_text=True, horizontal="center", vertical="center")
-        else:
-            ws[A + str(i)].alignment = Alignment(wrap_text=True)
-
+align()
 size()
 data()
-merge_cells()
+borders()
+sample()
+format()
 wb.save('test.xlsx')
