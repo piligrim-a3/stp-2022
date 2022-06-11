@@ -4,13 +4,16 @@ from openpyxl.styles import (
     Alignment, Font, GradientFill,
     Color, colors)
 
-ABC = "ABCDEFGHIJKLMNOPQRSTUVWXYZABCD"
-
+ABC = "ABCDEFGHIJ"
+cells = ["I2", "I3", "I4", "A10", "A11", "A12", "A13",
+         "E63", "E64", "E65", "E66", "H63", "H64", "H65",
+         "H66", "A15", "B15", "C15", "D15", "E15", "F16",
+         "E16", "G15", "H15", "I15", "J15"]
 
 def data():
     ws['H1'].value = 'УТВЕРЖДАЮ:'
     ws['H2'].value = 'Директор'
-    ws['I3'].value = '(сокращенное наименование образовательного учреждения)'
+    ws['I3'].value = '(сокращенное наименование\nобразовательного учреждения)'
     ws['H4'].value = '_____________'
     ws['H5'].value = '(подпись)'
     ws['I2'].value = '___________________________'
@@ -28,10 +31,10 @@ def data():
     ws['E15'].value = 'Дни посещения'
     ws['E16'].value = 'плановые'
     ws['F16'].value = 'фактические'
-    ws['G15'].value = 'Остаток на начало месяца, руб.'
-    ws['H15'].value = 'Поступило в текущем месяце на питание, руб.'
-    ws['I15'].value = 'Израсходовано в текущем месяце на питание, руб.'
-    ws['J15'].value = 'Остаток на конец месяца, руб.'
+    ws['G15'].value = 'Остаток на\nначало месяца,\nруб.'
+    ws['H15'].value = 'Поступило в\nтекущем месяце\nна питание, руб.'
+    ws['I15'].value = 'Израсходовано в\nтекущем месяце\nна питание, руб.'
+    ws['J15'].value = 'Остаток на\nконец месяца,\nруб.'
     ws['D57'].value = 'Итого:'
     ws['B59'].value = 'Отчет составлен в двух экземплярах.'
     ws['B61'].value = 'Подписи сторон:'
@@ -65,10 +68,38 @@ def merge_cells():
     ws.merge_cells('H15:H16')
     ws.merge_cells('I15:I16')
     ws.merge_cells('J15:J16')
+    ws.merge_cells('B59:D59')
+    ws.merge_cells('B63:D63')
+    ws.merge_cells('B65:D65')
+    ws.merge_cells('E63:F63')
+    ws.merge_cells('E64:F64')
+    ws.merge_cells('E65:F65')
+    ws.merge_cells('E66:F66')
+    ws.merge_cells('H63:I63')
+    ws.merge_cells('H64:I64')
+    ws.merge_cells('H65:I65')
+    ws.merge_cells('H66:I66')
 
 
 def borders():
     pass
+
+
+def size():
+    w = [5, 9, 6, 22, 9, 11, 14, 14, 14, 14]
+    for i in range(10):
+        ws.column_dimensions[ABC[i]].width = w[i]
+    ws.row_dimensions[3].height = 24
+    ws.row_dimensions[4].height = 21
+    ws.row_dimensions[15].height = 39
+    ws.row_dimensions[16].height = 25
+    ws.row_dimensions[63].height = 24
+    ws.row_dimensions[65].height = 24
+
+
+def align(c):
+    pass
+
 
 wb = Workbook()
 ws = wb.active
@@ -80,9 +111,17 @@ ft = Font(name='Times new roman',
           underline='none',
           strike=False,
           color='FF000000')
+font_size = 10
+cols_dict = {}
 for A in ABC:
     for i in range(1, 67):
         ws[A + str(i)].font = ft
+        if A + str(i) in cells:
+            ws[A + str(i)].alignment = Alignment(wrap_text=True, horizontal="center", vertical="center")
+        else:
+            ws[A + str(i)].alignment = Alignment(wrap_text=True)
+
+size()
 data()
 merge_cells()
 wb.save('test.xlsx')
