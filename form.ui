@@ -14,7 +14,8 @@
    <string>Кампус</string>
   </property>
   <property name="windowIcon">
-   <iconset theme="C:\Users\olegm\Documents\GitHub\stp-2022\stp-2022\icon.ico"/>
+   <iconset theme="C:\Users\olegm\Documents\GitHub\stp-2022\icon.ico">
+    <normaloff>.</normaloff>.</iconset>
   </property>
   <property name="autoFillBackground">
    <bool>true</bool>

@@ -13,7 +13,7 @@ class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
         Dialog.resize(507, 396)
-        icon = QtGui.QIcon.fromTheme("C:\\Users\\olegm\\Documents\\GitHub\\stp-2022\\stp-2022\\icon.ico")
+        icon = QtGui.QIcon.fromTheme("C:\\Users\\olegm\\Documents\\GitHub\\stp-2022\\icon.ico")
         Dialog.setWindowIcon(icon)
         Dialog.setAutoFillBackground(True)
         self.pushButton = QtWidgets.QPushButton(Dialog)

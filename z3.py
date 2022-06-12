@@ -1,4 +1,3 @@
-import sys
 import json
 import requests
 import fake_useragent
@@ -6,8 +5,6 @@ import qrcode
 from PyQt6 import uic, QtWidgets
 from form import Ui_Dialog
 from PyQt6.QtGui import QPixmap
-from PyQt6.QtWidgets import QLabel, QFileDialog
-from PyQt6 import QtGui
 import os
 
 
