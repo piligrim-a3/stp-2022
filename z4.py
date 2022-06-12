@@ -1,4 +1,7 @@
+import random
+
 from openpyxl import Workbook
+from russian_names import RussianNames
 from openpyxl.styles import (
     PatternFill, Border, Side,
     Alignment, Font, GradientFill,
@@ -10,7 +13,7 @@ cells = ["I2", "I3", "A10", "A11", "A12", "A13",
          "H66", "A15", "B15", "C15", "D15", "E15", "F16",
          "E16", "G15", "H15", "I15", "J15"]
 
-def data():
+def sample():
     ws['H1'].value = 'УТВЕРЖДАЮ:'
     ws['H2'].value = 'Директор'
     ws['I3'].value = '(сокращенное наименование образовательного учреждения)'
@@ -49,7 +52,7 @@ def data():
     ws['H66'].value = '(Ф.И.О.)'
 
 
-def sample():
+def merge_cells():
     ws.merge_cells('A10:J10')
     ws.merge_cells('A11:J11')
     ws.merge_cells('A12:J12')
@@ -115,7 +118,7 @@ def align():
 
 
 def format():
-    ws['D57'].font = Font(name='Times new roman',
+    ws['D' + '57'].font = Font(name='Times new roman',
           size=10,
           bold=True,
           italic=False,
@@ -123,7 +126,45 @@ def format():
           underline='none',
           strike=False,
           color='FF000000')
-    ws['D57'].alignment = Alignment(horizontal="right", vertical="center")
+    ws['D' + '57'].alignment = Alignment(horizontal="right", vertical="center")
+    for A in "EFGHIJ":
+        ws[A + '57'].font = Font(name='Times new roman',
+                                   size=10,
+                                   bold=True,
+                                   italic=False,
+                                   vertAlign=None,
+                                   underline='none',
+                                   strike=False,
+                                   color='FF000000')
+        ws[A + '57'].alignment = Alignment(horizontal="center", vertical="center")
+    for A in ABC:
+        for i in range(17, 57):
+            ws[A + str(i)].alignment = Alignment(horizontal="center", vertical="center")
+    for i in range(17, 57):
+        ws['D' + str(i)].alignment = Alignment(horizontal="left", vertical="center")
+
+
+def data():
+    for i in range(17, 57):
+        name = RussianNames().get_person().split()
+        ws['A' + str(i)].value = i - 16
+        ws['B' + str(i)].value = 6610106 + i - 16
+        ws['D' + str(i)].value = name[2] + ' ' + name[0]
+        ws['E' + str(i)].value = 22
+        ws['F' + str(i)].value = random.randint(2, 5)
+        ws['G' + str(i)].value = 0
+        ws['H' + str(i)].value = 1100
+        ws['I' + str(i)].value = '=F' + str(i) + '* 50'
+        ws['J' + str(i)].value = '=H' + str(i) + '- I' + str(i)
+        if i < 29:
+            ws['C' + str(i)].value = '4A'
+        elif i < 43:
+            ws['C' + str(i)].value = '4Б'
+        else:
+            ws['C' + str(i)].value = '4В'
+    for A in "EFGHIJ":
+        ws[A + '57'].value = '=СУММ(' + A + '17:' + A + '56)'
+
 
 
 wb = Workbook()
@@ -141,5 +182,6 @@ size()
 data()
 borders()
 sample()
+merge_cells()
 format()
-wb.save('test.xlsx')
+wb.save('Отчёт.xlsx')
