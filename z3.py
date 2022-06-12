@@ -16,26 +16,26 @@ header = {'user-agent': user}
 Form, Window = uic.loadUiType("form.ui")
 valid_id = 0
 
-
+'''Фунция логирования'''
 def login(lgn, pwd):
         link = "https://bgpu.ru/campus/api/v1/auth"
         data = {'login': lgn,
                 'pwd': pwd}
         return session.post(link, data=data, headers=header)
 
-
+'''Функция получения новых данных из запроса для qr'''
 def new_qr():
         link = "https://lk.bgpu.ru/campus/api/v1/area/qr?index=" + str(valid_id + 1)
         indexes = session.get(link, headers=header).text
         return json.loads(indexes)
 
-
+'''запрос counter_index'''
 def counter_index():
         actual_code_link = "https://lk.bgpu.ru/campus/api/v1/area/counter-index"
         code = session.get(actual_code_link, headers=header).text
         return json.loads(code)
 
-
+'''функция генерации qr'''
 def create_qr(jqr):
         global valid_id
         img = qrcode.make(jqr[0]['qr'])
@@ -45,6 +45,7 @@ def create_qr(jqr):
         return "qr.png"
 
 
+'''графический интерфейс'''
 class Ui(QtWidgets.QDialog, Form):
         def __init__(self):
                 super(Ui, self).__init__()
@@ -102,7 +103,7 @@ class Ui(QtWidgets.QDialog, Form):
                 self.ui.label_4.setVisible(not self.ui.label_4.isVisible())
                 self.ui.pushButton_4.setVisible(not self.ui.pushButton_4.isVisible())
 
-
+'''точка запуска'''
 if __name__ == "__main__":
         import sys
         app = QtWidgets.QApplication(sys.argv)

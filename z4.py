@@ -1,5 +1,4 @@
 import random
-
 from openpyxl import Workbook
 from russian_names import RussianNames
 from openpyxl.styles import (
@@ -13,6 +12,7 @@ cells = ["I2", "I3", "A10", "A11", "A12", "A13",
          "H66", "A15", "B15", "C15", "D15", "E15", "F16",
          "E16", "G15", "H15", "I15", "J15"]
 
+'''данные для шаблона таблицы'''
 def sample():
     ws['H1'].value = 'УТВЕРЖДАЮ:'
     ws['H2'].value = 'Директор'
@@ -51,7 +51,7 @@ def sample():
     ws['H65'].value = '___________________________'
     ws['H66'].value = '(Ф.И.О.)'
 
-
+'''объединение ячеек'''
 def merge_cells():
     ws.merge_cells('A10:J10')
     ws.merge_cells('A11:J11')
@@ -82,7 +82,7 @@ def merge_cells():
     ws.merge_cells('H65:I65')
     ws.merge_cells('H66:I66')
 
-
+'''настройка границ'''
 def borders():
     borders = Side(border_style="thin", color="000000")
     for A in ABC:
@@ -94,7 +94,7 @@ def borders():
     ws["I2"].border = Border(bottom=Side(border_style="hair", color="000000"))
     ws["A12"].border = Border(bottom=Side(border_style="thin", color="000000"))
 
-
+'''настройка ширины и высоты столбцов'''
 def size():
     w = [5, 9, 6, 22, 9, 11, 14, 14, 14, 14]
     for i in range(10):
@@ -106,7 +106,7 @@ def size():
     ws.row_dimensions[63].height = 24
     ws.row_dimensions[65].height = 24
 
-
+'''выравнивание текста'''
 def align():
     for A in ABC:
         for i in range(1, 67):
@@ -116,7 +116,7 @@ def align():
             else:
                 ws[A + str(i)].alignment = Alignment(wrap_text=True)
 
-
+'''конечное форматирвоание'''
 def format():
     ws['D' + '57'].font = Font(name='Times new roman',
           size=10,
@@ -143,7 +143,7 @@ def format():
     for i in range(17, 57):
         ws['D' + str(i)].alignment = Alignment(horizontal="left", vertical="center")
 
-
+'''заполнение таблицы данными'''
 def data():
     for i in range(17, 57):
         name = RussianNames().get_person().split()
