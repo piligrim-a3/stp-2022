@@ -51,3 +51,19 @@ while(i<len(data)):
     conn.commit()
     #плюсуем к счетчику единицу
     i = i + 9
+
+
+conn = sqlite3.connect('logi.db')
+cur = conn.cursor()
+
+#выполняем запрос в базу с сортировкой значений по убыванию по столбцу bytes (величина трафика)
+itog_vivod = cur.execute("SELECT * FROM spisok ORDER BY bytes DESC limit 10").fetchall()
+
+#заполняем текстовую переменную 10 строками со значениями с логов. С наибольшим трафиком
+vivod_text = ""
+for row in itog_vivod:
+    vivod_text = vivod_text  + "%s %s %s %s %s %s %s %s %s"%(row[0],row[1],row[2],row[3],row[4],row[5],row[6],row[7],row[8]) + "\n"
+
+#заполнение файла out.txt полученными данными
+with open("extract/out.txt", "w") as file:
+    file.write(vivod_text)
