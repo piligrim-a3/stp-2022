@@ -17,4 +17,25 @@ urllib.request.urlretrieve(imgURL, put)
 
 print(put)
 PATH = put
-#PATH = 'C:\\image.jpg' 
+#PATH = 'C:\\image.jpg'
+
+#Установка рисунка для обоев Рабочего стола. uiParam должна быть установлена в 0. pvParam- Строка,содержащая имя файла рисунка, чтобы использовать как обои
+SPI_SETDESKWALLPAPER = 20
+
+#проверка на разрядность системы
+def is_64bit_windows():
+    """Check if 64 bit Windows OS"""
+    return struct.calcsize('P') * 8 == 64
+
+#функция смены фона на целевое изображение
+def changeBG(path):
+    """Change background depending on bit size"""
+    #в зависимости от разрядности системы разные конфигурации
+    if is_64bit_windows():
+        ctypes.windll.user32.SystemParametersInfoW(SPI_SETDESKWALLPAPER, 0, PATH, 3)
+    else:
+        ctypes.windll.user32.SystemParametersInfoA(SPI_SETDESKWALLPAPER, 0, PATH, 3)
+
+#меняем обои
+changeBG(PATH)
+
