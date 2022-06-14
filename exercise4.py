@@ -32,3 +32,17 @@ while True:
     if s == ['']:
         break
     ws[s[0]].value = s[1].replace('\n', '')
+#Выравнивание данных в ячейках
+for A in "ABCDEFGHIJ":
+    for i in range(1, 67):
+        ws[A + str(i)].font = Font(name='Times new roman', size=10)
+        ws[A + str(i)].alignment = Alignment(wrap_text=True, horizontal="center", vertical="center")
+#Выравнивание данных в ячейках c именами
+for i in range(17, 57):
+    ws['D' + str(i)].alignment = Alignment(horizontal="left", vertical="center")
+#форматирвоание ячеек с итоговыми суммами
+ws['D57'].font, ws['D57'].alignment = Font(name='Times new roman', size=10, bold=True), Alignment(horizontal="right", vertical="center")
+for A in "EFGHIJ":
+    ws[A + '57'].font, ws[A + '57'].alignment = Font(name='Times new roman', size=10, bold=True), Alignment(horizontal="center", vertical="center")
+    #заполнение документа данными
+f = open("Имена.txt", "r", encoding='utf-8')
