@@ -23,6 +23,10 @@ data = data.replace('\n', ' ')
 #разделяем строковую переменную на массив. Разделителем является пробел
 data = data.split(" ")
 
+#если база уже существует - удалить ее
+if os.path.isfile("logi.db"):
+    os.remove("logi.db")
+
 #создаем базу logi.db и конектимся к ней, а так же таблицу с названием spisok
 conn = sqlite3.connect('logi.db')
 cur = conn.cursor()
@@ -52,7 +56,6 @@ while(i<len(data)):
     #плюсуем к счетчику единицу
     i = i + 9
 
-
 conn = sqlite3.connect('logi.db')
 cur = conn.cursor()
 
@@ -67,3 +70,4 @@ for row in itog_vivod:
 #заполнение файла out.txt полученными данными
 with open("extract/out.txt", "w") as file:
     file.write(vivod_text)
+
