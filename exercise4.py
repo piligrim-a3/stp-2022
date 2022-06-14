@@ -46,3 +46,21 @@ for A in "EFGHIJ":
     ws[A + '57'].font, ws[A + '57'].alignment = Font(name='Times new roman', size=10, bold=True), Alignment(horizontal="center", vertical="center")
     #заполнение документа данными
 f = open("Имена.txt", "r", encoding='utf-8')
+с = 1
+for i in range(17, 57):
+    s = f.readline().split('*')
+    ws['A' + str(i)].value = с
+    ws['B' + str(i)].value = random.randint(1, 6610106)
+    ws['C' + str(i)].value = s[0]
+    ws['D' + str(i)].value = s[1]
+    ws['E' + str(i)].value = 22
+    ws['F' + str(i)].value = random.randint(1, 22)
+    ws['G' + str(i)].value = 0
+    ws['H' + str(i)].value = 1100
+    ws['I' + str(i)].value = '=F' + str(i) + '* 50'
+    ws['J' + str(i)].value = '=H' + str(i) + '- I' + str(i)
+    с += 1
+for A in "EFGHIJ":
+    ws[A + '57'].value = '=СУММ(' + A + '17:' + A + '56)'
+#сохраение файла
+wb.save('School.xlsx')
