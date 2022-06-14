@@ -25,3 +25,10 @@ while True:
     if s == '':
         break
     ws.merge_cells(s)
+#заполнение документа
+f = open("Документ.txt", "r", encoding='utf-8')
+while True:
+    s = f.readline().split('*')
+    if s == ['']:
+        break
+    ws[s[0]].value = s[1].replace('\n', '')
