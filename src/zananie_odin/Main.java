@@ -4,8 +4,9 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Main {
     public static void main(String[] args) {
@@ -31,6 +32,14 @@ public class Main {
             e.printStackTrace();
         }
 
-        System.out.println(logs);
+        //создадим новую коллекцию Map, используя существующую, отсортировав и ограничив количество вхождений до 10
+        Map<String,Integer> sortedIp =
+                logs.entrySet().stream()
+                        .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+                        .limit(10)
+                        .collect(Collectors.toMap(
+                                Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+
+        System.out.println(sortedIp);
     }
 }
