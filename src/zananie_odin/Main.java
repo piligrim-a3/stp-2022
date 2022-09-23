@@ -19,10 +19,14 @@ public class Main {
                 //если встретится какое либо количество пробелов, то они будут разделителями
                 ip = line.split(" +")[2]; //Третий элемент ip-адрес
                 bytes = Integer.parseInt(line.split(" +")[4]); //пятый элемент это колво байт
-                logs.put(ip, bytes);
+                if(logs.containsKey(ip))
+                    //если проверяемый ip-адрес уцже был добавлен в нашу Map,
+                    //то мы поместим туда текущее значение увеличенное на уже существующее
+                    logs.put(ip, bytes + logs.get(ip));
+                else
+                    //а если ip-адреса не было, то мы просто поместим туда новый ip-адрес и соответствующее ему колво байт
+                    logs.put(ip, bytes);
             }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
