@@ -1,9 +1,6 @@
 package zananie_odin;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -28,9 +25,11 @@ public class Main {
                     //а если ip-адреса не было, то мы просто поместим туда новый ip-адрес и соответствующее ему колво байт
                     logs.put(ip, bytes);
             }
+            bufferedReader.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
+
 
         //создадим новую коллекцию Map, используя существующую, отсортировав и ограничив количество вхождений до 10
         Map<String,Integer> sortedIp =
@@ -39,7 +38,15 @@ public class Main {
                         .limit(10)
                         .collect(Collectors.toMap(
                                 Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
-
-        System.out.println(sortedIp);
+        new File("out.txt");
+        try {
+            FileWriter writer = new FileWriter("out.txt");
+            for (Map.Entry<String, Integer> e: sortedIp.entrySet()) {
+                writer.write("ip-адрес: " + e.getKey() + " байты: " + e.getValue() + "\n");
+            }
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
